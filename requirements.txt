@@ -1,0 +1,14 @@
+numpy
+pandas
+sklearn
+joblib
+gensim
+nltk
+spacy
+h5py
+pydot
+graphviz
+tensorflow-gpu
+keras
+smart_open
+
