@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>0c250532-a17a-44d3-9004-9169108c70e4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>loading_data.py</StartupFile>
+    <StartupFile>reading_corpus.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,7 +26,7 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="loading_data.py">
+    <Compile Include="reading_corpus.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
