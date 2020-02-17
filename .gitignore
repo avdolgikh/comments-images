@@ -23,3 +23,5 @@ $RECYCLE.BIN/
 /data/corpus.pkl
 /data/corpus_1M.pkl
 /data/corpus_small.pkl
+/data/corpus_100K.pkl
+/data/corpus_1M_.pkl
