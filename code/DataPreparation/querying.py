@@ -31,9 +31,20 @@ if __name__ == '__main__':
 
     lsi_vectorizer = LSIVectorizer(corpus_path, n_factors = 128, lexicon_path = lexicon_path, tfidf_path = tfidf_path, lsi_path = lsi_path, corpus_index_path = corpus_index_path)
     #lsi_vectorizer.train()
-    query = Query(TextNormalizer(), lsi_vectorizer)    
+    query = Query(TextNormalizer(), lsi_vectorizer)
+
     
-    for similarities in query.get_similar_docs(["movie funny", "food addiction", "cute animals"]):
+    
+    for similarities in query.get_similar_docs(["piano"], n_docs = 20):
         print("================")
         for index_in_corpus, similarity_value in similarities:
             print(similarity_value, index_in_corpus, json.dumps(lsi_vectorizer.corpus[index_in_corpus]))
+
+
+"""
+query: ["piano"]
+output:
+0.873118    140825  ["music", "play", "keboards", "live", "launch", "stand"]
+0.87277204  968977  ["music", "drummer", "local", "band", "play", "mostly", "pop", "rock", "cover", "dedication", "weekend", "performance"]
+"""
+
