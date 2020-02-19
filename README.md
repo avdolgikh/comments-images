@@ -45,5 +45,8 @@ In this way we will have our own representation that can be used in the same way
 Benefit: possibilty of using oov words.
 ![lower-dimension-word-embeddings.png](/docs/lower-dimension-word-embeddings.png)
 
+# Subwords and n-grams
+Since the specific of the corpus is short messages/comments with rare words with reduction, slang, mistakes, etc., we can use subwords as tokens (~ fastText or [WordPiece](https://arxiv.org/pdf/1609.08144.pdf))
+
 
 
