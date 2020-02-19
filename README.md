@@ -30,6 +30,12 @@ The second subtask of providing user with similar documents for her new message 
 - Use images (I have ideas)
 - Use comments as additional text data
 
+# Using images
+Let's say we have document representation (like LSI that we use now). We also can use pre-trained image representation (1d) - pre-softmax layer from ImageNet, GoogLeNet, etc.
+We can train 2 neural converters - from doc and image - into a single space. We can search for neighbors of docs as well of images in this space. In this way we can enrich the output of the search system.
+In general, we can use initial (GoogLeNet) image representation for that.
+But the idea is to make even lower-dimension representation which corresponds particullary to the community of subreddits, abd use hidden semantic connections between texts and images that is traditional in this community .
+![image-2-text.png](/docs/image-2-text.png)
 
 
 
