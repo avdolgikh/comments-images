@@ -1,3 +1,4 @@
+import gensim
 from gensim.models import TfidfModel
 from gensim.corpora import Dictionary
 from gensim.models import LsiModel
@@ -32,11 +33,10 @@ class LSIVectorizer (object):
         self.lsi =  LsiModel.load(self.lsi_path) \
                     if os.path.exists(self.lsi_path) \
                     else None
+        # TODO: move it to Query class?
         self.corpus_index = similarities.MatrixSimilarity.load(self.corpus_index_path) \
                             if os.path.exists(self.corpus_index_path) \
                             else None
-
-    # TODO: SAVE: self.corpus_index
 
     def train(self):
         self.__to_lsi()
@@ -46,6 +46,16 @@ class LSIVectorizer (object):
         documents : iterable of lists of strings which are tokens of a document
         """
         return self.corpus_index[ self.lsi[ self.__docs_to_tfidf( documents ) ] ]
+
+    def get_docs_lsi_vectors(self, documents, sparse = True):
+        """
+        documents : iterable of lists of strings which are tokens of a document
+        """
+        if not sparse:
+            for item in self.lsi[ self.__docs_to_tfidf( documents ) ]:
+                yield gensim.matutils.sparse2full( item, self.n_factors)
+        else:
+            return self.lsi[ self.__docs_to_tfidf( documents ) ]
 
 
 

@@ -25,12 +25,14 @@ class Query (object):
             yield query_similarities[:n_docs]
 
     def get_similar_terms(self, terms, n_terms = 10):
-        terms = list(self.normalizer.normalize( terms ))[0]
+        terms = [ term[0] for term in self.normalizer.normalize( terms ) ]
         ids = [ self.lsi_vectorizer.lexicon.token2id[term] for term in terms if term in self.lsi_vectorizer.lexicon.token2id ]
-        distances, indices = self.term_neighbors.kneighbors( self.term_matrix[ids] )
-        for i, similar_term_indices in enumerate(indices):
-            yield similar_term_indices[:n_terms] # TODO: return similarity values too
-            #yield (similar_term_indices[:n_terms], distances[i])
+        return self.__get_term_neighbors( self.term_matrix[ids], n_terms )
+
+    def get_similar_terms_to_docs (self, queries, n_terms = 10):
+        documents = self.normalizer.normalize( queries )
+        documents = self.lsi_vectorizer.get_docs_lsi_vectors(documents, sparse = False)        
+        return self.__get_term_neighbors( list(documents), n_terms )
 
     def __build_term_nearest_neighbors(self):
         term_singular_vectors = self.lsi_vectorizer.lsi.projection.u
@@ -41,27 +43,38 @@ class Query (object):
         self.term_neighbors = NearestNeighbors(n_neighbors = 100, algorithm='auto', radius=1.0, metric="cosine", n_jobs=1)
         self.term_neighbors.fit( self.term_matrix )
 
+    def __get_term_neighbors(self, item_embeddings, n_neighbors):
+        distances, indices = self.term_neighbors.kneighbors( item_embeddings )
+        for i, similar_term_indices in enumerate(indices):
+            similarities = [ (1. - distance) for distance in distances[i][:n_neighbors] ]
+            yield zip(similar_term_indices[:n_neighbors], similarities)
+
         
 if __name__ == '__main__':
-    corpus_path = '../../Data/corpus_12M.pkl'
-    lexicon_path = '../../Data/lexicon'
-    tfidf_path = '../../Data/tfidf'
-    lsi_path = '../../Data/lsi'
-    corpus_index_path = '../../Data/corpus_index'
+    corpus_path = '../../Data/corpus_1M.pkl'
+    lexicon_path = '../../Data/1M/lexicon'
+    tfidf_path = '../../Data/1M/tfidf'
+    lsi_path = '../../Data/1M/lsi'
+    corpus_index_path = '../../Data/1M/corpus_index'
 
     lsi_vectorizer = LSIVectorizer(corpus_path, n_factors = 128, lexicon_path = lexicon_path, tfidf_path = tfidf_path, lsi_path = lsi_path, corpus_index_path = corpus_index_path)
-    lsi_vectorizer.train()
+    #lsi_vectorizer.train()
     query = Query(TextNormalizer(), lsi_vectorizer)
-
-    for term_indices in query.get_similar_terms(["piano"], n_terms = 10):
-        print("================")
-        for term_index in term_indices:
-            print( lsi_vectorizer.lexicon[term_index] )
     
-    for similarities in query.get_similar_docs(["animals"], n_docs = 20):
+    for similarities in query.get_similar_terms_to_docs(["TV show all night."], n_terms = 20):
         print("================")
-        for index_in_corpus, similarity_value in similarities:
-            print(similarity_value, index_in_corpus, json.dumps(lsi_vectorizer.corpus[index_in_corpus]))
+        for term_index, similarity_value in similarities:
+            print( similarity_value, json.dumps(lsi_vectorizer.lexicon[term_index]) )
+
+    for similarities in query.get_similar_terms(["show", "night"], n_terms = 20):
+        print("================")
+        for term_index, similarity_value in similarities:
+            print( similarity_value, json.dumps(lsi_vectorizer.lexicon[term_index]) )
+    
+    for similarities in query.get_similar_docs(["TV show all night."], n_docs = 20):
+        print("================")
+        for doc_index, similarity_value in similarities:
+            print(similarity_value, doc_index, json.dumps(lsi_vectorizer.corpus[doc_index]))
 
 """
 piano
