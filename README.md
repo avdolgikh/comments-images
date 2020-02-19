@@ -37,5 +37,13 @@ In general, we can use initial (GoogLeNet) image representation for that.
 But the idea is to make even lower-dimension representation which corresponds particullary to the community of subreddits, abd use hidden semantic connections between texts and images that is traditional in this community .
 ![image-2-text.png](/docs/image-2-text.png)
 
+# OOV problem
+In order to cover words outside the corpus, we can use public pre-trained word embeddings (word2vec, GloVe, fastText, BERT, etc.).
+We can train 2 neural converters - from initial word embedding (for a term) and from document representation (based on initial embeddings of its words) - into a single space.
+The training set, in this case, is the original TF-IDF matrix of the corpus.
+In this way we will have our own representation that can be used in the same way we use LSI representation now (same operations can be applied).
+Benefit: possibilty of using oov words.
+![lower-dimension-word-embeddings.png](/docs/lower-dimension-word-embeddings.png)
+
 
 
