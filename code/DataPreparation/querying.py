@@ -51,17 +51,17 @@ class Query (object):
 
         
 if __name__ == '__main__':
-    corpus_path = '../../Data/corpus_1M.pkl'
-    lexicon_path = '../../Data/1M/lexicon'
-    tfidf_path = '../../Data/1M/tfidf'
-    lsi_path = '../../Data/1M/lsi'
-    corpus_index_path = '../../Data/1M/corpus_index'
+    corpus_path = '../../models/20M/corpus_20M.pkl'
+    lexicon_path = '../../models/20M/lexicon'
+    tfidf_path = '../../models/20M/tfidf'
+    lsi_path = '../../models/20M/lsi'
+    corpus_index_path = '../../models/20M/corpus_index'
 
     lsi_vectorizer = LSIVectorizer(corpus_path, n_factors = 128, lexicon_path = lexicon_path, tfidf_path = tfidf_path, lsi_path = lsi_path, corpus_index_path = corpus_index_path)
-    #lsi_vectorizer.train()
+    lsi_vectorizer.train()
     query = Query(TextNormalizer(), lsi_vectorizer)
     
-    for similarities in query.get_similar_terms_to_docs(["TV show all night."], n_terms = 20):
+    for similarities in query.get_similar_terms_to_docs(["A cute cat is playing with a ball of wool."], n_terms = 20):
         print("================")
         for term_index, similarity_value in similarities:
             print( similarity_value, json.dumps(lsi_vectorizer.lexicon[term_index]) )
