@@ -51,30 +51,40 @@ class Query (object):
 
         
 if __name__ == '__main__':
-    corpus_path = '../../models/20M/corpus_20M.pkl'
-    lexicon_path = '../../models/20M/lexicon'
-    tfidf_path = '../../models/20M/tfidf'
-    lsi_path = '../../models/20M/lsi'
-    corpus_index_path = '../../models/20M/corpus_index'
+    corpus_path = '../../models/12M/corpus_12M.pkl'
+    lexicon_path = '../../models/12M/lexicon'
+    tfidf_path = '../../models/12M/tfidf'
+    lsi_path = '../../models/12M/lsi'
+    corpus_index_path = '../../models/12M/corpus_index'
 
-    lsi_vectorizer = LSIVectorizer(corpus_path, n_factors = 128, lexicon_path = lexicon_path, tfidf_path = tfidf_path, lsi_path = lsi_path, corpus_index_path = corpus_index_path)
-    lsi_vectorizer.train()
-    query = Query(TextNormalizer(), lsi_vectorizer)
-    
-    for similarities in query.get_similar_terms_to_docs(["A cute cat is playing with a ball of wool."], n_terms = 20):
-        print("================")
-        for term_index, similarity_value in similarities:
-            print( similarity_value, json.dumps(lsi_vectorizer.lexicon[term_index]) )
+    lsi_vectorizer = LSIVectorizer(corpus_path, n_factors = 300, lexicon_path = lexicon_path, tfidf_path = tfidf_path, lsi_path = lsi_path, corpus_index_path = corpus_index_path)
+    #lsi_vectorizer.train()
+    #query = Query(TextNormalizer(), lsi_vectorizer)
 
-    for similarities in query.get_similar_terms(["show", "night"], n_terms = 20):
-        print("================")
-        for term_index, similarity_value in similarities:
-            print( similarity_value, json.dumps(lsi_vectorizer.lexicon[term_index]) )
+
+    print ( lsi_vectorizer.lsi.projection.s )
+    """
+    n_factors = 128:
+    [286.95597187 248.47479514 226.45186444 213.68360994 210.4693429
+    ....
+    43.7983927   43.62051112  38.91262603]
+    """
+
     
-    for similarities in query.get_similar_docs(["TV show all night."], n_docs = 20):
-        print("================")
-        for doc_index, similarity_value in similarities:
-            print(similarity_value, doc_index, json.dumps(lsi_vectorizer.corpus[doc_index]))
+    #for similarities in query.get_similar_terms_to_docs(["A cute cat is playing with a ball of wool."], n_terms = 20):
+    #    print("================")
+    #    for term_index, similarity_value in similarities:
+    #        print( similarity_value, json.dumps(lsi_vectorizer.lexicon[term_index]) )
+    #
+    #for similarities in query.get_similar_terms(["show", "night"], n_terms = 20):
+    #    print("================")
+    #    for term_index, similarity_value in similarities:
+    #        print( similarity_value, json.dumps(lsi_vectorizer.lexicon[term_index]) )
+    #
+    #for similarities in query.get_similar_docs(["TV show all night."], n_docs = 20):
+    #    print("================")
+    #    for doc_index, similarity_value in similarities:
+    #        print(similarity_value, doc_index, json.dumps(lsi_vectorizer.corpus[doc_index]))
 
 """
 piano
