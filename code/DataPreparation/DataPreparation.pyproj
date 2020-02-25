@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>0c250532-a17a-44d3-9004-9169108c70e4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>reading_corpus.py</StartupFile>
+    <StartupFile>querying.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,7 +26,7 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="normalizing.py">
+    <Compile Include="preprocessing.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="querying.py">
@@ -36,6 +36,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="vectorizing.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="wordpiece_tokenization.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
