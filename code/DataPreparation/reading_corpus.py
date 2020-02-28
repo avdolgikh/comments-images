@@ -71,7 +71,7 @@ def combine_corpora(corpus_path_list, result_corpus_path):
 if __name__ == '__main__':
 
     raw_data_path = '../../Data/documents.gz'
-    reader = CorpusReader(raw_data_path) # 206.7M lines, ~40M docs (filtered)
+    reader = CorpusReader(raw_data_path) # 206.7M lines, 40155032 docs (filtered)
     tokenizer = WordpieceTokenizer(vocab_file = '../../models/bert_vocab.txt')
 
     raw_docs = []
