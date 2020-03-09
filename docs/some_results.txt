@@ -1,0 +1,71 @@
+LSI. Full corpus (~34M docs)
+
+Similar docs for the "music performance" query:
+0.99997556 32705047 ["music", "streaming", "unsustainable"]
+0.99997437 21294254 ["music", "muusique", "est", "ligne"]
+0.9999734 32141551 ["music", "higher", "chika"]
+0.99997306 2477040 ["music", "sonny", "rollins", "milan"]
+0.99997294 10618870 ["music", "defender"]
+0.9999729 14978269 ["quoteporn", "devaluation", "music", "vince", "gill"]
+0.9999727 27471308 ["music", "zedd", "omar", "linx", "edm"]
+0.9999727 27472040 ["music", "zedd", "omar", "linx", "edm"]
+0.9999726 1986763 ["music", "muse"]
+0.999972 862453 ["music", "caps"]
+0.999972 12981678 ["music", "electronic", "music", "producer", "emp", "diploma"]
+0.999972 25938277 ["music", "flegma", "capacity", "psytrance"]
+0.99997187 22242396 ["music", "lasith", "fernando", "mathaka", "mal", "audio"]
+0.99997187 23427170 ["music", "alvesun", "music", "production"]
+0.99997175 24607676 ["everydaycarry", "music", "producer"]
+0.9999717 19209594 ["music", "standout", "moments"]
+0.9999716 15076148 ["mcpublic", "cue", "montage", "music"]
+0.9999716 19887398 ["music", "marc", "duncan"]
+0.9999716 22289938 ["music", "coldplay", "politik"]
+0.9999715 4539437 ["edm", "music"]
+================
+
+
+Similar terms for the "drummer" term:
+1.0 "drummer"
+0.8373441734810603 "musician"
+0.8011080913120238 "bassist"
+0.794209052720395 "guitarist"
+0.788851085049334 "punk"
+0.7879436780872968 "gilmour"
+0.7865185258608098 "vocalist"
+0.7831051234243891 "grohl"
+0.778509431924232 "mccartney"
+0.7780747442754672 "yorke"
+0.7731071985571559 "jimi"
+0.7728832021875673 "thom"
+0.7721561534874486 "musicians"
+0.7713349992642078 "coyne"
+0.7640805740120278 "beatles"
+0.7628246538914474 "waits"
+0.7620521928635196 "musicpics"
+0.7585063792464507 "joshs"
+0.7561352731054111 "hendrix"
+0.7557362789232778 "seanstrums"
+================
+
+
+Keywords for the "music performance" document:
+0.5033137751257888 "music"
+0.06652993292739126 "video"
+0.057185639493903775 "mind"
+0.039106046721791146 "listen"
+0.03254528261670181 "moment"
+0.03221275256248005 "notice"
+0.030607538755433535 "album"
+0.029630021345571203 "meanwhile"
+0.02677033888472016 "round"
+0.02517114135256495 "yeah"
+0.024567663683874426 "fan"
+0.024146743669471872 "xpost"
+0.02321023405686273 "iamverysmart"
+0.02312151711933323 "cover"
+0.022868590269231135 "picturegame"
+0.02182366728477691 "image"
+0.02094743879013126 "fun"
+0.020320479001552965 "many"
+0.01929335065502446 "awkward"
+0.01828987280175129 "whenever"

@@ -37,7 +37,7 @@ class Query (object):
         # TODO: or just use get_similar_terms() for each word in a query.
         documents = self.tokenizer.tokenize( queries )
         #documents_tfidf = self.lsi_vectorizer.docs_to_tfidf( documents, sparse = False ) # original TF-IDF (sparse): (n_queries, n_terms_in_lexicon)
-        documents = self.lsi_vectorizer.get_docs_lsi_vectors(documents, sparse = False)        
+        documents = self.lsi_vectorizer.get_docs_lsi_vectors(documents, sparse = False)
         documents_tfidf = np.dot( list(documents), self.term_matrix.T ) # approximate TF-IDF: (n_queries, n_terms_in_lexicon)        
         for document_tfidf in documents_tfidf:
             term_indices = np.argsort(-document_tfidf)[:n_terms]
@@ -71,20 +71,18 @@ def get_lsi_vectorizer (model_version, n_factors):
         
 if __name__ == '__main__':
 
-    model_version = "20M"
-    n_factors = 128
+    model_version = "34M"
+    n_factors = 269
+
     lsi_vectorizer = get_lsi_vectorizer (model_version, n_factors)
     #lsi_vectorizer.train()
     query = Query(LemmaTokenizer(), lsi_vectorizer)
 
+    print("================")
+    print ( lsi_vectorizer.lsi.projection.s )
 
-    #print ( lsi_vectorizer.lsi.projection.s )
-    """
-    n_factors = 128:
-    [286.95597187 248.47479514 226.45186444 213.68360994 210.4693429
-    ....
-    43.7983927   43.62051112  38.91262603]
-    """
+    print("================")
+    lsi_vectorizer.lsi.print_topics()
 
     doc = "music performance"
 
@@ -102,17 +100,5 @@ if __name__ == '__main__':
         print("================")
         for term_index, similarity_value in similarities:
             print( similarity_value, json.dumps(lsi_vectorizer.lexicon[term_index]) )
-    
-    
-    #doc = lsi_vectorizer.corpus[100]    
-    #doc = " ".join(doc)
-    #print(json.dumps(doc))
 
-
-"""
-query: ["piano"]
-output:
-0.873118    140825  ["music", "play", "keboards", "live", "launch", "stand"]
-0.87277204  968977  ["music", "drummer", "local", "band", "play", "mostly", "pop", "rock", "cover", "dedication", "weekend", "performance"]
-"""
 
